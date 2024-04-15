@@ -1,0 +1,5 @@
+mvn sonar:sonar \
+  -Dsonar.projectKey=Java-Sample \
+  -Dsonar.host.url=https://sonarqube-sonarqube.apps.ocp4.imss.work \
+  -Dsonar.login=7c100799c3f81a6194fea909b132ee2a13feed37
+
