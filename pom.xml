@@ -15,15 +15,6 @@
         <relativePath/> 
     </parent>
 
-    <distributionManagement>
-      <repository>
-        <id>github</id>
-        <name>GitHub OWNER Apache Maven Packages</name>
-        <url>https://maven.pkg.github.com/narendralucky333/spring-boot-hello-world</url>
-      </repository>
-    </distributionManagement>
-
-
     <!--	
     <distributionManagement>
         <repository>
@@ -101,9 +92,9 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-              <sonar.host.url>https://sonar-sonarqube-212.apps.ocp4.imss.com/</sonar.host.url>
-	      <sonar.login>sqa_be5df95f0aee40596a7336c9bf4c1c9122d10e25</sonar.login>
-              <sonar.projectName>narendra</sonar.projectName>
+              <sonar.host.url>https://sonarqube-sonarqube.apps.ocp4.imss.work</sonar.host.url>
+	      <sonar.login>eeb24cf06152b8b6fc2b84bf26953f80d5abc37b</sonar.login>
+              <sonar.projectName>Java-Sample</sonar.projectName>
               <sonar.projectVersion>master</sonar.projectVersion>
               <sonar.exclusions>**/*.java</sonar.exclusions>
             </properties>
