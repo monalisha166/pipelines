@@ -1,0 +1,16 @@
+<settings>
+  ...
+  <profiles>
+    <profile>
+      <id>sonar</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <maven.wagon.http.ssl.insecure>true</maven.wagon.http.ssl.insecure>
+        <maven.wagon.http.ssl.allowall>true</maven.wagon.http.ssl.allowall>
+      </properties>
+    </profile>
+  </profiles>
+  ...
+</settings>
