@@ -1,5 +1,43 @@
-mvn sonar:sonar \
-  -Dsonar.projectKey=Java-Sample \
-  -Dsonar.host.url=https://sonarqube-sonarqube.apps.ocp4.imss.work \
-  -Dsonar.login=7c100799c3f81a6194fea909b132ee2a13feed37
+on:
 
+push:
+
+branches:
+
+- main
+
+- master
+
+- develop
+
+- 'releases/**'
+
+pull_request:
+
+types: [opened, synchronize, reopened]
+
+name: Main Workflow
+
+jobs:
+
+sonarqube:
+
+runs-on: ubuntu-latest
+
+steps:
+
+- uses: actions/checkout@v3
+
+with:
+
+fetch-depth: 0
+
+- name: SonarQube Scan
+
+uses: sonarsource/sonarqube-scan-action@master
+
+env:
+
+SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
