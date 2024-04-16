@@ -7,7 +7,7 @@
     <groupId>com.edw</groupId>
     <artifactId>SpringBootHelloWorld</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+         
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -15,6 +15,30 @@
         <relativePath/> 
     </parent>
 
+    <distributionManagement>
+      <repository>
+        <id>github</id>
+        <name>GitHub OWNER Apache Maven Packages</name>
+        <url>https://maven.pkg.github.com/narendralucky333/spring-boot-hello-world</url>
+      </repository>
+    </distributionManagement>
+
+
+    <!--	
+    <distributionManagement>
+        <repository>
+           <id>github</id>
+	    <name>narendralucky333</name>
+           <url>https://maven.pkg.github.com/narendralucky333/spring-boot-hello-world</url>
+        </repository>
+        <snapshotRepository>
+           <id>github</id>
+	    <name>narendralucky333</name>
+           <url>https://maven.pkg.github.com/narendralucky333/spring-boot-hello-world</url>
+        </snapshotRepository>
+    </distributionManagement>
+    -->
+	
     <properties>
         <java.version>11</java.version>
     </properties>
@@ -34,26 +58,85 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+            <exclusions>
+		<exclusion>
+		    <groupId>org.junit.vintage</groupId>
+		    <artifactId>junit-vintage-engine</artifactId>
+		</exclusion>
+	    </exclusions>
         </dependency>
+	<dependency>
+            <groupId>org.sonarsource.scanner.maven</groupId>
+   	    <artifactId>sonar-maven-plugin</artifactId>
+            <version>3.9.1.2184</version>
+	</dependency>
     </dependencies>
-
+    
     <build>
-    <plugins>
-        <plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-            <version>3.2.4</version>
-            <configuration>
-                <mainClass>com.example.MainClass</mainClass>
-            </configuration>
-            <executions>
-                <execution>
-                    <goals>
-                        <goal>repackage</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
-    </plugins>
-</build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+		<configuration>
+	            <source>9</source>
+		    <target>9</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>2.4.0</version>
+            </plugin>
+        </plugins>
+    </build>
+	
+    <profiles>
+        <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+              <sonar.host.url>https://sonar-sonarqube-212.apps.ocp4.imss.com/</sonar.host.url>
+	      <sonar.login>sqa_be5df95f0aee40596a7336c9bf4c1c9122d10e25</sonar.login>
+              <sonar.projectName>narendra</sonar.projectName>
+              <sonar.projectVersion>master</sonar.projectVersion>
+              <sonar.exclusions>**/*.java</sonar.exclusions>
+            </properties>
+        </profile>
+        <profile>
+            <id>coverage</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+			<version>0.8.8</version>
+                        <executions>
+                            <execution>
+                                <id>prepare-agent</id>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>report</id>
+				<phase>test</phase>
+                                <goals>
+                                    <goal>report</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
