@@ -92,7 +92,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-              <sonar.host.url>https://sonarqube-sonarqube.apps.ocp4.imss.work</sonar.host.url>
+              <sonar.host.url>https://http://sonarqube.sonarqube.svc.cluster.local:9000</sonar.host.url>
 	      <sonar.login>eeb24cf06152b8b6fc2b84bf26953f80d5abc37b</sonar.login>
               <sonar.projectName>Java-Sample</sonar.projectName>
               <sonar.projectVersion>master</sonar.projectVersion>
